@@ -67,46 +67,80 @@
 			//Else if just because I like the bracket look in this case
 			//See what type of unit IE. temperature, currency, volume, or mass
 			UnitType = document.getElementById("mySelect").value;
-			if(UnitType === "temperature")
+			measureUnitSize = IsRightBigger(LeftUnit, RightUnit, UnitType);
+			console.log(measureUnitSize);
+			if(measureUnitSize === true)
 			{
-
+				//True, convert from Left Up to the Bigger unit on the right
 			}
-			else if(UnitType === "currency")
+			else
 			{
-
-			}
-			else if(UnitType === "volume")
-			{
-
-			}
-			else if (UnitType === "mass") 
-			{
-				//Check what the left unit is, IE. cubic metre, or gallon, pint, cubic foot.
-				switch(LeftUnit)
-				{
-					case "Kilogram (kg)":
-					break;
-					case "Gram (g)":
-					
-					break;
-					case "Milligram(mg)":
-					break;
-					case "Metric ton(t)":
-					break;
-					case "cubic metre":
-					break;
-					case "gallon":
-					break;
-					case "pint":
-					break;
-					case "cubic foot":
-					break;
-
-				}
+				//False, convert from Left Down to the smaller unit on the right
 			}
 		}
+		//Sees if the right unit is bigger than the left unit.
 		function IsRightBigger(_LeftUnit, _RightUnit, _UnitType)
 		{
+			switch (_UnitType)
+			{
+				case "temperature":
+					switch(_LeftUnit)	//Find Left Unit again
+					{
+						case "":
+					}
+				break;
+				case "currency":
+					switch(_LeftUnit)	//Find Left Unit again
+					{
+						case "":
+					}
+				break;
+				case "volume":
+					switch(_LeftUnit)	//Find Left Unit again
+					{
+						case "":
+					}
+				break;
+				case "mass":
+				switch(_LeftUnit)	//Find Left Unit Again	
+				{
+					case "Kilogram(kg)": // #2 1,000 g
+						if(_RightUnit === "Metric ton(t)")
+						{
+								return true; //we are done with this disaster
+						}
+						else
+						{
+								return false;
+						}
+					break;
+					case "Gram (g)":	//#3 1,000 milligrams
+					//to reduce the switch cases, just do this
+						if(_RightUnit === "Kilogram(kg)" || _RightUnit === "Metric ton(t)")
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}		
+					break;
+					case "Milligram(mg)": // #4 1/1000 gram
+						if(_RightUnit === "Kilogram(kg)" || _RightUnit === "Metric ton(t)" || _RightUnit == "Gram (g)")
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+					break;
+					case "Metric ton(t)": // #1 1,000 kg
+					return false;
+					break;
+				}
+				break;
+			}
 		}
 </script>
 </head>
