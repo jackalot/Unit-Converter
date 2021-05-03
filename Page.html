@@ -47,18 +47,67 @@
 			 	document.getElementById("Op8").innerHTML = "cubic foot";
 				break;
 				case "mass":
-				//Op 1 - 4 is the Left Side
-				document.getElementById("Op1").innerHTML = "Kilogram (kg)";
-			 	document.getElementById("Op2").innerHTML = "Gram (g)";
-			 	document.getElementById("Op3").innerHTML = "Milligram(mg)";
-			 	document.getElementById("Op4").innerHTML = "Metric ton(t)";
-			 	//Op 5 - 8 is the Right Side
-			 	document.getElementById("Op5").innerHTML = "cubic metre";
-			 	document.getElementById("Op6").innerHTML = "gallon";
-			 	document.getElementById("Op7").innerHTML = "pint";
-			 	document.getElementById("Op8").innerHTML = "cubic foot";
+				//Op 1 - 4 is the Left Side									Ordered in size
+				document.getElementById("Op1").innerHTML = "Metric ton(t)"; // #1 1,000 kg
+			 	document.getElementById("Op2").innerHTML = "Kilogram(kg)"; // #2 1,000 g
+			 	document.getElementById("Op3").innerHTML = "Gram(g)"; // #3 1,000 milligrams
+			 	document.getElementById("Op4").innerHTML = "Milligram(mg)"; // #4 1/1000 gram
+			 	//Op 5 - 8 is the Right Side								Ordered in size
+			 	document.getElementById("Op5").innerHTML = "Metric ton(t)"; // #1 1,000 kg
+			 	document.getElementById("Op6").innerHTML = "Kilogram(kg)"; // #2 1,000 g
+			 	document.getElementById("Op7").innerHTML = "Gram(g)"; // #3 1,000 milligrams 
+			 	document.getElementById("Op8").innerHTML = "Milligram(mg)"; // #4 1/1000 gram
 				break;
 			}
+		}
+		function Convert()
+		{
+			LeftUnit = document.getElementById("LeftUnit").value;
+			RightUnit = document.getElementById("RightUnit").value;
+			//Else if just because I like the bracket look in this case
+			//See what type of unit IE. temperature, currency, volume, or mass
+			UnitType = document.getElementById("mySelect").value;
+			if(UnitType === "temperature")
+			{
+
+			}
+			else if(UnitType === "currency")
+			{
+
+			}
+			else if(UnitType === "volume")
+			{
+
+			}
+			else if (UnitType === "mass") 
+			{
+				//Check what the left unit is, IE. cubic metre, or gallon, pint, cubic foot.
+				switch(LeftUnit)
+				{
+					case "Kilogram (kg)":
+					break;
+					case "Gram (g)":
+
+					break;
+					case "Milligram(mg)":
+					break;
+					case "Metric ton(t)":
+					break;
+					case "cubic metre":
+					break;
+					case "gallon":
+					break;
+					case "pint":
+					break;
+					case "cubic foot":
+					break;
+
+				}
+			}
+		}
+		function IsRightBigger(_LeftUnit, _RightUnit, _UnitType)
+		{
+
 		}
 </script>
 </head>
@@ -88,7 +137,7 @@ Select a type of unit to convert:
   <option id = "Op4">Above</option>
 </select>
 <br><br>
-<input type="button" onclick="ChooseATypeOfUnit()" value="Click Me!">
+<input type="button" onclick="Convert()" value="Convert The left To right">
 </form>
 
 <input type="text" id="RightTextBox" value="Right Box, will be converted from the top"> </input>
@@ -100,8 +149,6 @@ Select a type of unit to convert to:
   <option id = "Op7">Option</option>
   <option id = "Op8">Above</option>
 </select>
-<br><br>
-<input type="button" onclick="ChooseATypeOfUnit()" value="Click Me!">
 </form>
 </body>
 </html>
