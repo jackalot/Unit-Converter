@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Unit Converter</title>
+<script type="text/javascript">
+		function ChooseATypeOfUnit()
+		{
+			unit = document.getElementById("mySelect").value;
+			console.log(unit);
+			switch(unit)
+			{
+				case "temperature":
+				//Since I have no idea how to do this in performance friendly way, lets do it this way
+				//Op 1 - 4 is the Left Side
+			 	document.getElementById("Op1").innerHTML = "Fahrenheit";
+			 	document.getElementById("Op2").innerHTML = "Celsius";
+			 	document.getElementById("Op3").innerHTML = "Kelvin";
+			 	document.getElementById("Op4").innerHTML = "Choose The Above Options";
+			 	//Op 5 - 8 is the Right Side
+			 	document.getElementById("Op5").innerHTML = "Fahrenheit";
+			 	document.getElementById("Op6").innerHTML = "Celsius";
+			 	document.getElementById("Op7").innerHTML = "Kelvin";
+			 	document.getElementById("Op8").innerHTML = "Choose The Above Options";
+				break;
+				case "currency":
+				//Op 1 - 4 is the Left Side
+				document.getElementById("Op1").innerHTML = "US Dollar (USD)";
+			 	document.getElementById("Op2").innerHTML = "Canadian Dollar CAD";
+			 	document.getElementById("Op3").innerHTML = "Euro (EUR)";
+			 	document.getElementById("Op4").innerHTML = "Japanese Yen (JPY)";
+			 	//Op 5 - 8 is the Right Side
+			 	document.getElementById("Op5").innerHTML = "US Dollar (USD)";
+			 	document.getElementById("Op6").innerHTML = "Canadian Dollar CAD";
+			 	document.getElementById("Op7").innerHTML = "Euro (EUR)";
+			 	document.getElementById("Op8").innerHTML = "Japanese Yen (JPY)";
+				break;
+				case "volume":
+				//Op 1 - 4 is the Left Side
+				document.getElementById("Op1").innerHTML = "cubic metre";
+			 	document.getElementById("Op2").innerHTML = "gallon";
+			 	document.getElementById("Op3").innerHTML = "pint";
+			 	document.getElementById("Op4").innerHTML = "cubic foot";
+			 	//Op 5 - 8 is the Right Side
+			 	document.getElementById("Op5").innerHTML = "cubic metre";
+			 	document.getElementById("Op6").innerHTML = "gallon";
+			 	document.getElementById("Op7").innerHTML = "pint";
+			 	document.getElementById("Op8").innerHTML = "cubic foot";
+				break;
+				case "mass":
+				//Op 1 - 4 is the Left Side
+				document.getElementById("Op1").innerHTML = "Kilogram (kg)";
+			 	document.getElementById("Op2").innerHTML = "Gram (g)";
+			 	document.getElementById("Op3").innerHTML = "Milligram(mg)";
+			 	document.getElementById("Op4").innerHTML = "Metric ton(t)";
+			 	//Op 5 - 8 is the Right Side
+			 	document.getElementById("Op5").innerHTML = "cubic metre";
+			 	document.getElementById("Op6").innerHTML = "gallon";
+			 	document.getElementById("Op7").innerHTML = "pint";
+			 	document.getElementById("Op8").innerHTML = "cubic foot";
+				break;
+			}
+		}
+</script>
+</head>
+<body>
+	<!--Pick a type of unit so it can replace the left and right drop downs-->
+<form>
+Select a type of unit to convert:
+<select id="mySelect">
+  <option>temperature</option>
+  <option>currency</option>
+  <option>volume</option>
+  <option>mass</option>
+</select>
+<br><br>
+<input type="button" onclick="ChooseATypeOfUnit()" value="Click Me!">
+</form>
+
+<!--This is the left text box, the unit we are converting from-->
+<input type="text" id="LeftTextBox" value="Left Box, Type a number"> </input>
+<!--This is the left unit, pick a unit to convert from after picking a type from above-->
+<form>
+Select a type of unit to convert:
+<select id="LeftUnit">
+  <option id = "Op1">Choose</option>
+  <option id = "Op2">An</option>
+  <option id = "Op3">Option From</option>
+  <option id = "Op4">Above</option>
+</select>
+<br><br>
+<input type="button" onclick="ChooseATypeOfUnit()" value="Click Me!">
+</form>
+
+<input type="text" id="RightTextBox" value="Right Box, will be converted from the top"> </input>
+<form>
+Select a type of unit to convert to:
+<select id="RightUnit">
+  <option id = "Op5">Choose</option>
+  <option id = "Op6">An</option>
+  <option id = "Op7">Option</option>
+  <option id = "Op8">Above</option>
+</select>
+<br><br>
+<input type="button" onclick="ChooseATypeOfUnit()" value="Click Me!">
+</form>
+</body>
+</html>
