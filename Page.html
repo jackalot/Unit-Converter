@@ -12,14 +12,14 @@
 				case "temperature":
 				//Since I have no idea how to do this in performance friendly way, lets do it this way
 				//Op 1 - 4 is the Left Side
-			 	document.getElementById("Op1").innerHTML = "Fahrenheit";
-			 	document.getElementById("Op2").innerHTML = "Celsius";
-			 	document.getElementById("Op3").innerHTML = "Kelvin";
+			 	document.getElementById("Op1").innerHTML = "Fahrenheit"; //F to C C=(F−32)× 5/9
+			 	document.getElementById("Op2").innerHTML = "Celsius"; // F= C × 9/5 + 32
+			 	document.getElementById("Op3").innerHTML = "Kelvin"; // F = 9/5 (K – 273) + 32
 			 	document.getElementById("Op4").innerHTML = "Choose The Above Options";
 			 	//Op 5 - 8 is the Right Side
-			 	document.getElementById("Op5").innerHTML = "Fahrenheit";
-			 	document.getElementById("Op6").innerHTML = "Celsius";
-			 	document.getElementById("Op7").innerHTML = "Kelvin";
+			 	document.getElementById("Op5").innerHTML = "Fahrenheit"; //F to C C=(F−32)× 5/9
+			 	document.getElementById("Op6").innerHTML = "Celsius"; // F= C × 9/5 + 32
+			 	document.getElementById("Op7").innerHTML = "Kelvin"; // F = 9/5 (K – 273) + 32
 			 	document.getElementById("Op8").innerHTML = "Choose The Above Options";
 				break;
 				case "currency":
@@ -64,14 +64,81 @@
 		{
 			LeftUnit = document.getElementById("LeftUnit").value;
 			RightUnit = document.getElementById("RightUnit").value;
+			LeftBoxValue = document.getElementById("LeftTextBox").value;
+			RightBoxValue = document.getElementById("RightTextBox");
 			//Else if just because I like the bracket look in this case
 			//See what type of unit IE. temperature, currency, volume, or mass
 			UnitType = document.getElementById("mySelect").value;
-			measureUnitSize = IsRightBigger(LeftUnit, RightUnit, UnitType);
-			console.log(measureUnitSize);
+			measureUnitSize = IsRightBigger(LeftUnit, RightUnit, UnitType); //mass and volume use this
+			//console.log(measureUnitSize);
 			if(measureUnitSize === true)
 			{
 				//True, convert from Left Up to the Bigger unit on the right
+				switch(UnitType)
+				{
+					//Since temperature doesnt scale, just put it here
+					case "temperature":
+						switch(LeftUnit)	//Convert from
+						{
+							case "Fahrenheit":
+								switch(RightUnit)	//Convert To
+								{
+									case "Celsius":
+									//Fahrenheit To Celsius formula
+									//(F - 32) / 1.8 = C
+									let F = parseInt(LeftBoxValue); //I.E 100
+									let parenth  = F - 32  //Using our example, it should be 68
+									let Result = parenth / 1.8; //Using our example, it should be 3.777
+									 document.getElementById("RightTextBox").value = Result;
+									break;//Fahrenheit to Celsius break
+									//Space to help Readability, new case below!
+									case "Kelvin":
+									//Fahrenheit to Kelvin formula
+									//Kelvin (K) = (Fahrenheit - 32) / 1.8 + 273.15
+									//make it farenheit since the celsius case is in this scope
+									let Farenheit = parseInt(LeftBoxValue); //I.E 100
+									//Same issue with parenthesis
+									let Kparenthesis  = Farenheit - 32  //Using our example, it should be 68
+									let Divide = Kparenthesis / 1.8; //Using our example, it should be 3.777
+									let Answer = Divide + 273.15; // Using the example, it should be 310.93
+									document.getElementById("RightTextBox").value = Answer;
+									break;
+								}
+								break; // Farenheit Break
+							case "Celsius":
+								switch(RightUnit)
+								{
+									case "Fahrenheit":
+									//Celsius to Farenheit formula
+									//(C * 1.8) + 32 = F
+									let C = parseInt(LeftBoxValue);
+									console.log("C is a " + typeof(C) + " and it has the value " + C);
+									let parenth = C * 1.8;
+									let Result = parenth + 32;
+									document.getElementById("RightTextBox").value = Result;
+									break; //Celsius to Farenheit break
+									case "Kelvin":
+
+									break;
+								}
+								break; //Celsius Break
+							case "Kelvin":
+							switch(RightUnit)
+								{
+									case "Fahrenheit":
+									break;
+									case "Celsius":
+									break;
+								}
+							break; // Kelvin Break
+						}
+						break;//Temperature Break 
+					case "currency":
+					break;
+					case "volume":
+					break;
+					case "mass":
+				}
 			}
 			else
 			{
@@ -84,10 +151,8 @@
 			switch (_UnitType)
 			{
 				case "temperature":
-					switch(_LeftUnit)	//Find Left Unit again
-					{
-						case "":
-					}
+					//Write the conversion in measureUnitSize === true, since temperature units dont scale well
+					return true;
 				break;
 				case "currency":
 					switch(_LeftUnit)	//Find Left Unit again
