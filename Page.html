@@ -91,7 +91,7 @@
 									let Result = parenth / 1.8; //Using our example, it should be 3.777
 									 document.getElementById("RightTextBox").value = Result;
 									break;//Fahrenheit to Celsius break
-									//Space to help Readability, new case below!
+//Line break for Readability
 									case "Kelvin":
 									//Fahrenheit to Kelvin formula
 									//Kelvin (K) = (Fahrenheit - 32) / 1.8 + 273.15
@@ -112,23 +112,39 @@
 									//Celsius to Farenheit formula
 									//(C * 1.8) + 32 = F
 									let C = parseInt(LeftBoxValue);
-									console.log("C is a " + typeof(C) + " and it has the value " + C);
 									let parenth = C * 1.8;
 									let Result = parenth + 32;
 									document.getElementById("RightTextBox").value = Result;
 									break; //Celsius to Farenheit break
+//Line break for readability
 									case "Kelvin":
-
+									//Celsius to Kelvin formula
+									//Kelvin (K) = Celsius + 273.15 
+									
+									let Celsius = parseInt(LeftBoxValue);
+									let Answer = Celsius + 273.15;
+									document.getElementById("RightTextBox").value = Answer;
 									break;
 								}
 								break; //Celsius Break
 							case "Kelvin":
-							switch(RightUnit)
+								switch(RightUnit)
 								{
 									case "Fahrenheit":
-									break;
+									//Kelvin to Fahrenheit formula
+									//Fahrenheit (°F) = Kelvin x 1.8 - 459.67
+									let Kelvin = parseInt(LeftBoxValue);
+									let Result = Kelvin * 1.8 - 459.67;
+									document.getElementById("RightTextBox").value = Result;
+									break;//Kelvin to Fahrenheit break
+//Line break for readability
 									case "Celsius":
-									break;
+									// Kelvin to Celsius formula
+									// Celsius (°C) = Kelvin - 273.15
+									let CKelvin = parseInt(LeftBoxValue);
+									let Answer = CKelvin - 273.15;
+									document.getElementById("RightTextBox").value = Answer;
+									break;// Kelvin to Celsius Break
 								}
 							break; // Kelvin Break
 						}
