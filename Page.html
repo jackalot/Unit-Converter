@@ -36,15 +36,15 @@
 				break;
 				case "volume":
 				//Op 1 - 4 is the Left Side
-				document.getElementById("Op1").innerHTML = "cubic metre";
-			 	document.getElementById("Op2").innerHTML = "gallon";
-			 	document.getElementById("Op3").innerHTML = "pint";
-			 	document.getElementById("Op4").innerHTML = "cubic foot";
+				document.getElementById("Op1").innerHTML = "cubic metre"; //#1
+			 	document.getElementById("Op2").innerHTML = "cubic foot";//#2
+			 	document.getElementById("Op3").innerHTML = "gallon";//#3
+			 	document.getElementById("Op4").innerHTML = "pint";//#4
 			 	//Op 5 - 8 is the Right Side
-			 	document.getElementById("Op5").innerHTML = "cubic metre";
-			 	document.getElementById("Op6").innerHTML = "gallon";
-			 	document.getElementById("Op7").innerHTML = "pint";
-			 	document.getElementById("Op8").innerHTML = "cubic foot";
+			 	document.getElementById("Op5").innerHTML = "cubic metre"; //#1
+			 	document.getElementById("Op6").innerHTML = "cubic foot";//#2
+			 	document.getElementById("Op7").innerHTML = "gallon";//#3
+			 	document.getElementById("Op8").innerHTML = "pint";//#4
 				break;
 				case "mass":
 				//Op 1 - 4 is the Left Side									Ordered in size
@@ -70,7 +70,7 @@
 			//See what type of unit IE. temperature, currency, volume, or mass
 			UnitType = document.getElementById("mySelect").value;
 			measureUnitSize = IsRightBigger(LeftUnit, RightUnit, UnitType); //mass and volume use this
-			//console.log(measureUnitSize);
+			console.log(measureUnitSize);
 			if(measureUnitSize === true)
 			{
 				//True, convert from Left Up to the Bigger unit on the right
@@ -196,10 +196,14 @@
 								case "Euro (EUR)":
 									break;
 							}
-							break;
+							break; 
 						}
-					break;
+					break; // Currency line break
 					case "volume":
+						//switch(RightUnit)
+						//{
+						//	case ""
+						//}
 					break;
 					case "mass":
 				}
@@ -225,11 +229,44 @@
 				case "volume":
 					switch(_LeftUnit)	//Find Left Unit again
 					{
-						case "":
+						case "cubic metre"://#1	
+							return false; // Nothing is bigger
+						break;
+						case "cubic foot"://#2
+							switch(_RightUnit)
+							{
+								case "cubic metre": //#1
+									return true;
+								break;
+								case "gallon"://#3
+									return false;
+								break;
+								case "pint": //#4
+									return false;	
+								break;
+							}
+						break;
+						case "gallon"://#3
+							switch(_RightUnit)
+							{
+								case "cubic metre": //#1
+								return true; 
+								break;
+								case "cubic foot"://#2
+								return true; 
+								break;
+								case "pint": //#4
+									return false;
+								break;
+							}
+						break;
+						case "pint"://#4
+							return true; // pint is the smallest unit
+						break;
 					}
-				break;
+				break; // Mass break
 				case "mass":
-				switch(_LeftUnit)	//Find Left Unit Again	
+				switch(_LeftUnit)	//Find Left Unit 	
 				{
 					case "Kilogram(kg)": // #2 1,000 g
 						if(_RightUnit === "Metric ton(t)")
