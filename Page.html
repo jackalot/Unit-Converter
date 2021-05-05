@@ -149,7 +149,55 @@
 							break; // Kelvin Break
 						}
 						break;//Temperature Break 
+					//Currency is a lot harder it seems than a formula	
 					case "currency":
+						switch(LeftUnit) //Convert From
+						{
+							case "US Dollar (USD)": 
+								switch(RightUnit) // Convert To
+								{
+									case "Canadian Dollar CAD":
+										break;
+									case "Euro (EUR)":
+										break;
+									case "Japanese Yen (JPY)":
+										break;
+								}
+							break;
+							case "Canadian Dollar CAD":
+								switch(RightUnit)
+								{
+									case "US Dollar (USD)":
+										break;
+									case "Euro (EUR)":
+										break;
+									case "Japanese Yen (JPY)":
+										break;
+								}
+							break;
+							case "Euro (EUR)":
+								switch(RightUnit)
+								{
+									case "US Dollar (USD)":
+										break;
+									case "Canadian Dollar CAD":
+										break;
+									case "Japanese Yen (JPY)":
+										break;
+								}
+							break;
+							case "Japanese Yen (JPY)":
+							switch(RightUnit)
+							{
+								case "US Dollar (USD)":
+									break;
+								case "Canadian Dollar CAD":
+									break;
+								case "Euro (EUR)":
+									break;
+							}
+							break;
+						}
 					break;
 					case "volume":
 					break;
@@ -171,10 +219,8 @@
 					return true;
 				break;
 				case "currency":
-					switch(_LeftUnit)	//Find Left Unit again
-					{
-						case "":
-					}
+					//like temperature, currency doesnt scale well
+					return true;
 				break;
 				case "volume":
 					switch(_LeftUnit)	//Find Left Unit again
