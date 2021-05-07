@@ -200,17 +200,147 @@
 						}
 					break; // Currency line break
 					case "volume":
-						//switch(RightUnit)
-						//{
-						//	case ""
-						//}
+						switch(LeftUnit) // Convert from
+						{
+							
+							case "cubic foot": //#2
+								switch(RightUnit) // Convert to
+								{
+									case "cubic metre"://#1
+										//Formula
+										//cubic meters = cubic feet × 0.028317
+									let cubicfeet = parseInt(LeftBoxValue);
+									let Answer = cubicfeet * 0.028317;
+									document.getElementById("RightTextBox").value = Answer;
+									break;
+								}
+							break; //cubic foot break
+							case "gallon"://#3
+								switch(RightUnit)
+								{
+									case "cubic metre":
+									//Formula
+									//cubic meters = gallons × 0.003785
+									let gallons = parseInt(LeftBoxValue);
+									let CM = gallons * 0.003785;
+									document.getElementById("RightTextBox").value = CM;
+									break;
+									case "cubic foot":
+									//Formula
+									//cubic feet = gallons × 0.133681
+									let newGallons = parseInt(LeftBoxValue);
+									let CF = newGallons * 0.133681;
+									document.getElementById("RightTextBox").value = CF;
+									break;
+								}
+							break;
+							case "pint": //#4
+								switch(RightUnit)
+								{
+									case"cubic metre":
+									//Formula
+									//cubic meters = pints × 0.000473
+									let pints = parseInt(LeftBoxValue);
+									let cubicMetre = pints * 0.000473;
+									document.getElementById("RightTextBox").value = cubicMetre;
+									break;
+									case "cubic foot":
+									//Formula
+									//cubic feet = pints × 0.01671
+									let newpints = parseInt(LeftBoxValue);
+									let cubicfoot = newpints * 0.01671;
+									document.getElementById("RightTextBox").value = cubicfoot;
+									break;
+									case "gallon":
+									//Formula
+									//gallons = pints ÷ 8
+									let newestpints = parseInt(LeftBoxValue);
+									let gallons = newestpints / 8;
+									document.getElementById("RightTextBox").value = gallons;
+									break;
+								}
+							break;
+						}
 					break;
 					case "mass":
 				}
 			}
-			else
+			else //If the right side is smaller
 			{
 				//False, convert from Left Down to the smaller unit on the right
+				//Do the conversions of bigger to smaller to have less cases in switch statements
+				switch(UnitType)
+				{
+					case "volume":
+						switch(LeftUnit)
+						{
+							case "cubic Metre":
+								switch(RightUnit)
+								{
+									case"cubic foot":
+									//Formula
+									// cubic feet = cubic meters × 35.314667
+									let CM = parseInt(LeftBoxValue);
+									let cubicfoot = CM * 35.314667;
+									document.getElementById("RightTextBox").value = cubicfoot;
+									break;
+									case"gallon":
+									//Formula
+									// gallons = cubic meters × 264.172052
+									let NewCM = parseInt(LeftBoxValue);
+									let gallons = NewCM * 264.172052;
+									document.getElementById("RightTextBox").value = gallons;
+									break;
+									case"pint":
+									//Formula
+									//pints = cubic meters × 2,113.376419
+									let newestCM = parseInt(LeftBoxValue);
+									let pints = newestCM * 2113.376419;
+									document.getElementById("RightTextBox").value = pints;
+									break;
+								}									
+							break;
+// Line break for readability
+							case "cubic foot":
+								switch(RightUnit)
+								{
+									case"gallon":
+									//Formula
+									//gallons = cubic feet × 7.480519
+									let CF = parseInt(LeftBoxValue);
+									let gallons = CF * 7.480519;
+									document.getElementById("RightTextBox").value = gallons;
+									break;
+									case"pint":
+									//Formula
+									//pints = cubic feet × 59.844155
+									let newCF = parseInt(LeftBoxValue);
+									let pints = newCF * 59.844155;
+									document.getElementById("RightTextBox").value = pints;
+									break;
+								}
+							break;
+							case "gallon":
+								switch(RightUnit)
+								{
+									case"pint":
+									//Formula
+									//pints = gallons × 8
+									let gallon = parseInt(LeftBoxValue);
+									let pints = gallon * 8;
+									document.getElementById("RightTextBox").value = pints;
+									break;
+								}
+							break;
+							case "pint":
+							//pint is the smallest, if the right is also pint, just = itself
+							document.getElementById("RightTextBox").value = LeftBoxValue;
+							break;
+						}
+					break;
+					case "mass":
+					break;
+				}
 			}
 		}
 		//Sees if the right unit is bigger than the left unit.
@@ -246,6 +376,7 @@
 								break;
 							}
 						break;
+//line break for readibility
 						case "gallon"://#3
 							switch(_RightUnit)
 							{
@@ -260,6 +391,7 @@
 								break;
 							}
 						break;
+//line break for readibility
 						case "pint"://#4
 							return true; // pint is the smallest unit
 						break;
