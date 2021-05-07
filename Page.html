@@ -263,6 +263,76 @@
 						}
 					break;
 					case "mass":
+						switch(LeftUnit) //Convert from
+						{
+							case "Kilogram(kg)":
+							switch(RightUnit) //Convert To
+							{
+								case "Metric ton(t)":
+									//Formula
+									//t = k/1000.0
+								let k  = parseInt(LeftBoxValue);
+								let t = k / 1000.0;
+								document.getElementById("RightTextBox").value = t;
+								break;
+								case "Kilogram(kg)":
+								document.getElementById("RightTextBox").value = LeftBoxValue;
+								break;
+							}
+							break;
+							case "Gram(g)":
+							switch(RightUnit)
+							{
+								case "Metric ton(t)":
+								//Formula
+								// t= g/1000000
+								let g = parseInt(LeftBoxValue);
+								let t = g/1000000;
+								document.getElementById("RightTextBox").value = t;
+								break;
+								case "Kilogram(kg)":
+								//Formula
+								//kg = g ÷ 1,000
+								let newg = parseInt(LeftBoxValue);
+								let kg = newg / 1000;
+								document.getElementById("RightTextBox").value = kg;
+								break;
+								case "Gram(g)":
+
+								document.getElementById("RightTextBox").value = LeftBoxValue;
+								break;
+							}
+							break;
+							case "Milligram(mg)":
+							switch(RightUnit)
+							{
+								case "Metric ton(t)":
+								// t = mg/1000000000
+								let mg = parseInt(LeftBoxValue);
+								let t = mg/1000000;
+								document.getElementById("RightTextBox").value = t;
+								break;
+								case "Kilogram(kg)":
+								//Formula
+								//kg = mg/1000000
+								let newmg = parseInt(LeftBoxValue);
+								let kg = newmg / 1000000;
+								document.getElementById("RightTextBox").value = kg;
+								break;
+								case "Gram(g)":
+								//Formula
+								//g = mg/1000
+								let newestmg = parseInt(LeftBoxValue);
+								let g = newestmg / 1000;
+								document.getElementById("RightTextBox").value = g;
+								break;
+								case "Milligram(mg)":
+								document.getElementById("RightTextBox").value = LeftBoxValue;
+								break;
+							}
+							break;
+						}
+					break;
 				}
 			}
 			else //If the right side is smaller
@@ -339,6 +409,93 @@
 						}
 					break;
 					case "mass":
+						switch(LeftUnit)
+						{
+							case"Metric ton(t)":
+							 	if(RightUnit === "Metric ton(t)") //In case right is left
+							 	{
+									document.getElementById("RightTextBox").value = LeftBoxValue;
+							 	}
+							 	else
+							 	{
+							 		switch(RightUnit)
+							 		{
+							 			case "Kilogram(kg)":
+							 			//Formula
+							 			//kg = t/0.0010000
+							 			let t = parseInt(LeftBoxValue);
+							 			let kg = t / 0.0010000;
+							 			document.getElementById("RightTextBox").value = kg;
+							 			break;
+							 			case "Gram(g)":
+							 			//Formula
+							 			//g = t/0.0000010000
+							 			let newt = parseInt(LeftBoxValue);
+							 			let g = newt / 0.0000010000;
+							 			document.getElementById("RightTextBox").value = g;
+							 			break;
+							 			case "Milligram(mg)":
+							 			//Formula 
+							 			//mg = t/0.0000000010000
+							 			let newert = parseInt(LeftBoxValue);
+							 			let mg = newert / 0.0000000010000;
+							 			document.getElementById("RightTextBox").value = mg;
+							 			break;
+							 		}
+							 	}
+							break;
+							case"Kilogram(kg)":
+							 	if(RightUnit === "Kilogram(kg)")
+							 	{
+							 		document.getElementById("RightTextBox").value = LeftBoxValue;
+							 	}
+							 	else
+							 	{
+							 		switch(RightUnit)
+							 		{
+							 			case "Gram(g)":
+							 			//Formula
+							 			//g = kg/0.0010000
+							 			let kg = parseInt(LeftBoxValue);
+							 			let g = kg/0.0010000;
+							 			document.getElementById("RightTextBox").value = g;
+							 			break;
+							 			case "Milligram(mg)":
+							 			//Formula
+							 			//mg = kg x 1,000,000
+							 			let newkg = parseInt(LeftBoxValue);
+							 			let mg = newkg * 1000000;
+							 			document.getElementById("RightTextBox").value = mg;
+							 			break;
+							 		}
+							 	}
+							break;
+							case"Gram(g)":
+							 	if(RightUnit === "Gram(g)")
+							 	{
+									document.getElementById("RightTextBox").value = LeftBoxValue;
+							 	}
+							 	else
+							 	{
+							 		switch(RightUnit)
+							 		{
+							 			case "Milligram(mg)":
+							 			//Formula
+							 			//mg = g/0.0010000
+							 			let g = parseInt(LeftBoxValue);
+							 			let mg = g / 0.0010000;
+							 			document.getElementById("RightTextBox").value = mg;
+							 			break;
+							 		}
+							 	}
+							break;
+							case"Milligram(mg)":
+							 if(RightUnit === "Milligram(mg)")
+							 {
+								document.getElementById("RightTextBox").value = LeftBoxValue;
+							 }
+							break;
+						}
 					break;
 				}
 			}
@@ -410,7 +567,7 @@
 								return false;
 						}
 					break;
-					case "Gram (g)":	//#3 1,000 milligrams
+					case "Gram(g)":	//#3 1,000 milligrams
 					//to reduce the switch cases, just do this
 						if(_RightUnit === "Kilogram(kg)" || _RightUnit === "Metric ton(t)")
 						{
@@ -422,7 +579,7 @@
 						}		
 					break;
 					case "Milligram(mg)": // #4 1/1000 gram
-						if(_RightUnit === "Kilogram(kg)" || _RightUnit === "Metric ton(t)" || _RightUnit == "Gram (g)")
+						if(_RightUnit === "Kilogram(kg)" || _RightUnit === "Metric ton(t)" || _RightUnit == "Gram(g)")
 						{
 							return true;
 						}
